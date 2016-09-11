@@ -22,21 +22,31 @@ namespace RedditNet
 {
     public class RedditApi
     {
+        private readonly RedditHttpClientHandler _clientHandler;
+
         public JsonSerializerSettings SerializerSettings { get; }
 
         public HttpClient Client { get; set; }
 
-        public RedditApi() : this(UrlConstants.RedditBaseUrl, null)
+        public int RequestLimitUsed => _clientHandler.LimitUsed;
+
+        public int RequestLimitRemaining => _clientHandler.LimitRemaining;
+
+        public DateTime? RequestLimitReset => _clientHandler.LimitReset;
+
+        public RedditApi(RedditHttpClientHandler clientHandler = null) : this(UrlConstants.RedditBaseUrl, clientHandler)
         {
         }
 
-        public RedditApi(RedditAuth auth) : this(UrlConstants.RedditBaseOAuthApiUrl, auth)
+        public RedditApi(RedditAuth auth) : this(UrlConstants.RedditBaseOAuthApiUrl, new RedditHttpClientHandler(auth))
         {
         }
 
-        protected RedditApi(string url, RedditAuth auth)
+        protected RedditApi(string url, RedditHttpClientHandler clientHandler)
         {
-            Client = new HttpClient(new RedditHttpClientHandler(auth)) { BaseAddress = new Uri(url) };
+            _clientHandler = clientHandler;
+
+            Client = new HttpClient(_clientHandler) { BaseAddress = new Uri(url) };
             Client.DefaultRequestHeaders.Add("User-Agent", "RedditNET/1.0 (by /u/mitch528)");
 
             SerializerSettings = new JsonSerializerSettings
