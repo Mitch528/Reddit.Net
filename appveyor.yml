@@ -2,8 +2,9 @@ version: 1.0.{build}
 image: Visual Studio 2017 RC
 configuration: Release
 clone_folder: C:\RedditNet
-build_script:
-- cmd: msbuild /t:pack /p:Configuration=Release
+build:
+  parallel: true
+  verbosity: normal
 artifacts:
 - path: C:\RedditNet\Reddit.Net\Reddit.Net\bin\Release\**\*.nupkg
   name: RedditNet
