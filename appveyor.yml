@@ -1,0 +1,14 @@
+version: 1.0.{build}
+image: Visual Studio 2017 RC
+configuration: Release
+clone_folder: C:\RedditNet
+build_script:
+- cmd: msbuild /t:pack /p:Configuration=Release
+artifacts:
+- path: C:\RedditNet\Reddit.Net\Reddit.Net\bin\Release\**\*.nupkg
+  name: RedditNet
+deploy:
+- provider: NuGet
+  api_key:
+    secure: +R0+I/09nKCPhUFOqoahxQT0FqFL+mIuYGHZNIdmsiSzqukGTh2FtsusOxFk8si6
+  artifact: RedditNet
