@@ -44,7 +44,7 @@ namespace RedditNet
 
         protected RedditApi(string url, RedditHttpClientHandler clientHandler)
         {
-            _clientHandler = clientHandler;
+            _clientHandler = clientHandler ?? new RedditHttpClientHandler(null);
 
             Client = new HttpClient(_clientHandler) { BaseAddress = new Uri(url) };
             Client.DefaultRequestHeaders.Add("User-Agent", "RedditNET/1.0 (by /u/mitch528)");

@@ -23,7 +23,7 @@ namespace RedditNet.Samples
                 {
                     Console.WriteLine($"- Comment - \"{comment.Body}\" by {comment.Author}");
                 }
-                
+
                 More more = comments.LastOrDefault() as More;
 
                 var someMoreComments = more?.Children.Take(2) ?? new List<string>();

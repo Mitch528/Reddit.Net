@@ -25,7 +25,7 @@ namespace RedditNet.Auth
                 resp = await TokenClient.RequestAuthorizationCodeAsync(Code, RedirectUri).ConfigureAwait(false);
 
             if (resp.IsError)
-                throw new Exception(resp.IsHttpError ? resp.HttpErrorReason : resp.Error);
+                throw new Exception(resp.Error);
 
             if (resp.ExpiresIn > 0)
                 ExpireTime = DateTime.UtcNow.AddSeconds(resp.ExpiresIn);
