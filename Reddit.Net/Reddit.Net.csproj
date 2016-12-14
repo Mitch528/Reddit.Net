@@ -7,7 +7,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <PackageId>Reddit.Net</PackageId>
-    <PackageVersion>1.0.0-dev</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <Authors>Mitchell Kutchuk</Authors>
     <Description>A Reddit client for C#</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -35,7 +35,8 @@
       <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Packaging">
-      <Version>0.1.169-dev</Version>
+      <Version>0.1.170-dev</Version>
+      <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

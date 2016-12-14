@@ -2,13 +2,10 @@ version: 1.0.{build}
 image: Visual Studio 2017 RC
 configuration: Release
 clone_folder: C:\RedditNet
-before_build:
-- ps: nuget restore
-build:
-  parallel: true
-  verbosity: normal
+build_script:
+- cmd: msbuild "C:\RedditNet\Reddit.Net.sln" /t:restore /m /verbosity:normal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 artifacts:
-- path: C:\RedditNet\Reddit.Net\Reddit.Net\bin\Release\**\*.nupkg
+- path: Reddit.Net\Reddit.Net\bin\Release\*.nupkg
   name: RedditNet
 deploy:
 - provider: NuGet
