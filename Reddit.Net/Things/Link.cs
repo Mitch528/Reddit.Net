@@ -104,7 +104,7 @@ namespace RedditNet.Things
         public async Task<Listing> GetCommentsAsync(GetCommentsRequest request,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var listings = await Api.GetMultiListingAsync(string.Format(UrlConstants.CommentsUrl, Subreddit, Id), request,
+            var listings = await Api.GetMultiListingAsync(string.Format(UrlConstants.LinkCommentsUrl, Subreddit, Id), request,
                 cancellationToken);
 
             return listings.Last();

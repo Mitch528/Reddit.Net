@@ -62,7 +62,9 @@
 
         public const string LinksByIdUrl = "/by_id/{0}";
 
-        public const string CommentsUrl = "/r/{0}/comments/{1}.json";
+        public const string LinkCommentsUrl = "/r/{0}/comments/{1}.json";
+
+        public const string CommentsUrl = "/r/{0}/comments.json";
 
         public const string ApproveUrl = "/api/approve";
 

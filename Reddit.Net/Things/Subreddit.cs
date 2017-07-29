@@ -92,11 +92,19 @@ namespace RedditNet.Things
             if (string.IsNullOrEmpty(request.LinkId))
                 throw new ArgumentNullException(nameof(request.LinkId));
 
-            var listings = await Api.GetMultiListingAsync(string.Format(UrlConstants.CommentsUrl, Name, request.LinkId), request,
+            var listings = await Api.GetMultiListingAsync(string.Format(UrlConstants.LinkCommentsUrl, Name, request.LinkId), request,
                 cancellationToken);
 
             return listings.Last().OfType<Comment>().FirstOrDefault();
         }
+
+        public Task<Listing> GetCommentsAsync(GetCommentsRequest request,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Api.GetListingAsync(string.Format(UrlConstants.CommentsUrl, Name), request,
+                cancellationToken);
+        }
+
 
         public Task<Listing> GetHotLinksAsync(ListingRequest request,
             CancellationToken cancellationToken = default(CancellationToken))
