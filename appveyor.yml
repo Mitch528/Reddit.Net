@@ -2,6 +2,7 @@ version: 1.0.{build}
 image: Visual Studio 2017
 configuration: Release
 clone_folder: C:\RedditNet
+test: off
 build_script:
 - cmd: dotnet restore
 - cmd: dotnet test "C:\RedditNet\Reddit.Net.Tests\Reddit.Net.Tests.csproj"
