@@ -85,6 +85,16 @@ namespace RedditNet.Things
         [JsonProperty("distinguished")]
         public string Distinguished { get; set; }
 
+        public Task<Comment> ReplyAsync(string message,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Api.PostAsync<Comment>(UrlConstants.SubmitCommentUrl, new CommentRequest
+            {
+                Text = message,
+                ThingId = FullName
+            }, cancellationToken);
+        }
+
         public Task EditUserTextAsync(string newText, CancellationToken cancellationToken = default(CancellationToken))
         {
             return Api.PostAsync(UrlConstants.EditUserTextUrl, new EditUserTextRequest { ThingId = FullName, Text = newText },
