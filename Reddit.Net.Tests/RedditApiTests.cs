@@ -72,36 +72,36 @@ namespace RedditNet.Tests
             Assert.Equal(10, listing.Count);
         }
 
-        [Fact]
-        public async Task TestListingStream()
-        {
-            RedditApi api = new RedditApi();
-            Subreddit subreddit = await api.GetSubredditAsync(TestSubredditName);
+        //[Fact]
+        //public async Task TestListingStream()
+        //{
+        //    RedditApi api = new RedditApi();
+        //    Subreddit subreddit = await api.GetSubredditAsync(TestSubredditName);
 
-            Listing listing = await subreddit.GetCommentsAsync(new GetCommentsRequest
-            {
-                Sort = CommentSort.New,
-                Limit = 25
-            });
+        //    Listing listing = await subreddit.GetCommentsAsync(new GetCommentsRequest
+        //    {
+        //        Sort = CommentSort.New,
+        //        Limit = 25
+        //    });
 
-            var stream = listing.GetStream()
-                .Take(50);
+        //    var stream = listing.GetStream()
+        //        .Take(50);
 
-            IDisposable subscription = stream.Subscribe(thing =>
-            {
-                Comment comment = thing as Comment;
+        //    IDisposable subscription = stream.Subscribe(thing =>
+        //    {
+        //        Comment comment = thing as Comment;
 
-                if (comment != null)
-                {
-                    _output.WriteLine("Comment by: " + comment.Author);
-                }
-            });
+        //        if (comment != null)
+        //        {
+        //            _output.WriteLine("Comment by: " + comment.Author);
+        //        }
+        //    });
 
-            var things = await stream.ToList().ToTask();
+        //    var things = await stream.ToList().ToTask();
 
-            subscription.Dispose();
+        //    subscription.Dispose();
 
-            Assert.Equal(50, things.Count);
-        }
+        //    Assert.Equal(50, things.Count);
+        //}
     }
 }
