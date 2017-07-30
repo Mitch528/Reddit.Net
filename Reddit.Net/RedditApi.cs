@@ -224,7 +224,7 @@ namespace RedditNet
         public async Task<T> GetAsync<T>(string url, object obj = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var kvp = obj?.ToKeyValuePairs().Select(p => Tuple.Create(p.Key, p.Value));
+            var kvp = obj?.ToKeyValuePairs();
 
             HttpResponseMessage resp = await Client.GetAsync(url + WebUtils.ToQueryString(kvp), cancellationToken)
                 .ConfigureAwait(false);

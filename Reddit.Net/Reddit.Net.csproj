@@ -12,6 +12,7 @@
     <Copyright>Copyright 2016 (c) Mitchell Kutchuk. All rights reserved.</Copyright>
     <PackageTags>reddit</PackageTags>
     <PackOnBuild>true</PackOnBuild>
+    <RootNamespace>RedditNet</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="2.10.0" />

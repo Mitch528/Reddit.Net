@@ -47,7 +47,7 @@ namespace RedditNet
 
             return Observable.Create<Thing>(async (observer, cts) =>
             {
-                var listing = this.Clone();
+                Listing listing = this;
 
                 while (true)
                 {
@@ -66,20 +66,6 @@ namespace RedditNet
 
                 observer.OnCompleted();
             });
-        }
-
-        public Listing Clone()
-        {
-            var clone = new Listing
-            {
-                Api = Api,
-                Url = Url,
-                Before = Before,
-                After = After,
-                Children = Children.ToList()
-            };
-
-            return clone;
         }
     }
 }

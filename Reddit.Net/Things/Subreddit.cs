@@ -12,7 +12,7 @@ namespace RedditNet.Things
 {
     public class Subreddit : Thing
     {
-        private static readonly Regex NameRegex = new Regex(@"\/?r\/(?<name>.*)\/?");
+        private static readonly Regex NameRegex = new Regex(@"\/?r\/(?<name>.*)\/?", RegexOptions.Compiled);
 
         [JsonProperty("accounts_active")]
         public int? AccountsActive { get; set; }
