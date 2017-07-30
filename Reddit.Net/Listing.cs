@@ -49,16 +49,37 @@ namespace RedditNet
             {
                 Listing listing = this;
 
+                if (!listing.Any())
+                {
+                    observer.OnCompleted();
+
+                    return;
+                }
+
+                string before = listing.FirstOrDefault()?.FullName;
+
+                listing.Before = before;
+
                 while (true)
                 {
                     if (cts.IsCancellationRequested)
                         break;
 
-                    listing = await listing.GetPreviousListingAsync(limit, cts);
-
-                    foreach (Thing thing in listing)
+                    if (!string.IsNullOrEmpty(listing.Before))
                     {
-                        observer.OnNext(thing);
+                        listing = await listing.GetPreviousListingAsync(limit, cts);
+
+                        if (listing.Any())
+                        {
+                            before = listing.First().FullName;
+                        }
+
+                        foreach (Thing thing in listing)
+                        {
+                            observer.OnNext(thing);
+                        }
+
+                        listing.Before = before;
                     }
 
                     await Task.Delay(delay.Value, cts);
