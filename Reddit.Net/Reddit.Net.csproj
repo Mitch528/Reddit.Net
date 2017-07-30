@@ -4,7 +4,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Reddit.Net</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>$(appveyor_build_version)</PackageVersion>
     <Authors>Mitchell Kutchuk</Authors>
     <Description>A Reddit client for C#</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -5,7 +5,7 @@ clone_folder: C:\RedditNet
 build_script:
 - cmd: dotnet restore
 - cmd: dotnet test "C:\RedditNet\Reddit.Net.Tests\Reddit.Net.Tests.csproj"
-- cmd: dotnet pack "C:\RedditNet\Reddit.Net\Reddit.Net.csproj" /p:PackageVersion=$(appveyor_build_version) --configuration Release
+- cmd: dotnet pack "C:\RedditNet\Reddit.Net\Reddit.Net.csproj" --configuration Release
 artifacts:
 - path: Reddit.Net\bin\Release\*.nupkg
   name: RedditNet
