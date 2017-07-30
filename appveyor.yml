@@ -6,7 +6,7 @@ build_script:
 - cmd: dotnet restore
 - cmd: dotnet pack "C:\RedditNet\Reddit.Net\Reddit.Net.csproj" --configuration Release
 artifacts:
-- path: C:\RedditNet\Reddit.Net\bin\Release\*.nupkg
+- path: Reddit.Net\bin\Release\*.nupkg
   name: RedditNet
 deploy:
 - provider: NuGet
