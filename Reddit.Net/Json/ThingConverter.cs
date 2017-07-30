@@ -33,7 +33,7 @@ namespace RedditNet.Json
             if (obj["json"] != null)
                 obj = obj["json"];
 
-            if (obj["errors"] != null)
+            if (obj["errors"] != null && obj["errors"].HasValues)
                 throw new RedditApiException(obj["errors"].ToString());
 
             JToken data = obj["data"];
