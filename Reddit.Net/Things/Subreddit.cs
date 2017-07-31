@@ -14,6 +14,8 @@ namespace RedditNet.Things
     {
         private static readonly Regex NameRegex = new Regex(@"\/?r\/(?<name>.*)\/?", RegexOptions.Compiled);
 
+        private string _name;
+
         [JsonProperty("accounts_active")]
         public int? AccountsActive { get; set; }
 
@@ -82,7 +84,18 @@ namespace RedditNet.Things
         [JsonProperty("user_is_subscriber")]
         public bool? UserIsSubscriber { get; set; }
 
-        public string Name => NameRegex.Match(Url).Groups["name"].Value.TrimEnd('/');
+        public string Name
+        {
+            get
+            {
+                if (_name != null)
+                    return _name;
+
+                _name = NameRegex.Match(Url).Groups["name"].Value.TrimEnd('/');
+
+                return _name;
+            }
+        }
 
         public async Task<Comment> GetCommentAsync(GetCommentRequest request,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -150,6 +163,12 @@ namespace RedditNet.Things
             request.RestrictSr = true;
 
             return Api.GetListingAsync(string.Format(UrlConstants.SearchSubredditUrl, Name), request, cancellationToken);
+        }
+
+        public Task<Listing> GetInfoAsync(InfoRequest request,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Api.GetListingAsync(string.Format(UrlConstants.SubredditInfoUrl, Name), request, cancellationToken);
         }
 
         public Task SubscribeAsync(CancellationToken cancellationToken = default(CancellationToken))

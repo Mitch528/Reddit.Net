@@ -22,6 +22,8 @@
 
         public const string SubredditRandomLinksUrl = "/r/{0}/random.json";
 
+        public const string SubredditInfoUrl = "/r/{0}/api/info";
+
         public const string NewSubredditsUrl = "/subreddits/new.json";
 
         public const string SubredditSubscribeUrl = "/api/subscribe";

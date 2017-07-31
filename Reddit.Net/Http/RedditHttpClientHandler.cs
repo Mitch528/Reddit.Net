@@ -42,7 +42,7 @@ namespace RedditNet.Http
             {
                 string token = Auth.AccessToken;
 
-                if (string.IsNullOrEmpty(token) || (Auth.ExpireTime.HasValue && DateTime.UtcNow > Auth.ExpireTime.Value))
+                if (string.IsNullOrEmpty(token) || (Auth.ExpireTime.HasValue && DateTime.UtcNow >= Auth.ExpireTime.Value))
                 {
                     await Auth.GetOAuthTokenAsync().ConfigureAwait(false);
 

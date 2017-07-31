@@ -34,7 +34,11 @@ namespace RedditNet
 
         public DateTime? RequestLimitReset => _clientHandler.LimitReset;
 
-        public RedditApi(RedditHttpClientHandler clientHandler = null) : this(UrlConstants.RedditBaseUrl, clientHandler)
+        public RedditApi() : this(new RedditHttpClientHandler(null))
+        {
+        }
+
+        public RedditApi(RedditHttpClientHandler clientHandler) : this(UrlConstants.RedditBaseOAuthApiUrl, clientHandler)
         {
         }
 
