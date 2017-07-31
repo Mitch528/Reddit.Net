@@ -4,6 +4,9 @@ namespace RedditNet.Requests
 {
     public class GetCommentsRequest : ListingRequest
     {
+        [RequestProperty("comment")]
+        public string Comment { get; set; }
+
         [RequestProperty("context")]
         public int? Context { get; set; }
 
@@ -21,5 +24,11 @@ namespace RedditNet.Requests
 
         [RequestProperty("sr_detail")]
         public bool? SrDetail { get; set; }
+
+        [RequestProperty("threaded")]
+        public bool Threaded { get; set; }
+
+        [RequestProperty("truncate")]
+        public int Truncate { get; set; }
     }
 }
