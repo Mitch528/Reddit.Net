@@ -118,6 +118,12 @@ namespace RedditNet.Things
                 cancellationToken);
         }
 
+        public async Task<Listing> GetCommentAndRepliesAsync(GetCommentRepliesRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var listing = await Api.GetMultiListingAsync(string.Format(UrlConstants.CommentRepliesUrl, Name, request.LinkId.Split('_')[1], request.CommentId), request, cancellationToken);
+
+            return listing.LastOrDefault();
+        }
 
         public Task<Listing> GetHotLinksAsync(ListingRequest request,
             CancellationToken cancellationToken = default(CancellationToken))

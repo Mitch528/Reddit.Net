@@ -68,6 +68,8 @@
 
         public const string CommentsUrl = "/r/{0}/comments.json";
 
+        public const string CommentRepliesUrl = "/r/{0}/comments/{1}/_/{2}.json";
+
         public const string ApproveUrl = "/api/approve";
 
         public const string SearchSubredditUrl = "/r/{0}/search.json";

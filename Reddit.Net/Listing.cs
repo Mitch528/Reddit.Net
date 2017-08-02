@@ -65,22 +65,19 @@ namespace RedditNet
                     if (cts.IsCancellationRequested)
                         break;
 
-                    if (!string.IsNullOrEmpty(listing.Before))
+                    listing = await listing.GetPreviousListingAsync(limit, cts);
+
+                    if (listing.Any())
                     {
-                        listing = await listing.GetPreviousListingAsync(limit, cts);
-
-                        if (listing.Any())
-                        {
-                            before = listing.First().FullName;
-                        }
-
-                        foreach (Thing thing in listing)
-                        {
-                            observer.OnNext(thing);
-                        }
-
-                        listing.Before = before;
+                        before = listing.First().FullName;
                     }
+
+                    foreach (Thing thing in listing)
+                    {
+                        observer.OnNext(thing);
+                    }
+
+                    listing.Before = before;
 
                     await Task.Delay(delay.Value, cts);
                 }
