@@ -70,10 +70,10 @@ namespace RedditNet.Things
         [JsonProperty("score")]
         public int Score { get; set; }
 
-        [JsonProperty("self_text")]
+        [JsonProperty("selftext")]
         public string SelfText { get; set; }
 
-        [JsonProperty("self_text_html")]
+        [JsonProperty("selftext_html")]
         public string SelfTextHtml { get; set; }
 
         [JsonProperty("subreddit")]
